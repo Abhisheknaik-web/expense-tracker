@@ -1,144 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
-  <meta name="description" content="LifeOS - Track your expenses, journal, habits, goals, and daily activities. 100% offline.">
-  <meta name="theme-color" content="#08080d">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>LifeOS – Life Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/design-system.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersonaTrack - Advanced Personality & Behavior Analytics</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div>
-            LifeOS
-            <span>Life Tracker</span>
-          </div>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <div class="welcome-logo">🧠</div>
+            <h1 class="welcome-title">PersonaTrack</h1>
+            <p class="welcome-subtitle">Advanced Personality & Behavior Analytics</p>
+            <div class="welcome-loader"></div>
         </div>
-      </div>
+    </div>
 
-      <div class="nav-section">
-        <div class="nav-section-title">Menu</div>
-      </div>
-      <ul class="nav-items">
-        <li class="nav-item active" data-page="dashboard">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Dashboard
-        </li>
-        <li class="nav-item" data-page="expenses">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Expenses
-        </li>
-        <li class="nav-item" data-page="journal">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          Journal
-        </li>
-        <li class="nav-item" data-page="habits">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          Habits
-        </li>
-        <li class="nav-item" data-page="goals">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          Goals
-        </li>
-        <li class="nav-item" data-page="analytics">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Analytics
-        </li>
-      </ul>
-
-      <div class="sidebar-footer">
-        <div class="nav-item" style="font-size:var(--fs-xs);color:var(--c-text-muted);cursor:default;justify-content:center">
-          100% Offline · Your Data
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🧠 PersonaTrack</h2>
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
         </div>
-      </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-view="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
+            </li>
+            <li class="nav-item" data-view="entry">
+                <span class="nav-icon">✍️</span>
+                <span class="nav-text">New Entry</span>
+            </li>
+            <li class="nav-item" data-view="personality">
+                <span class="nav-icon">🎭</span>
+                <span class="nav-text">Personality Traits</span>
+            </li>
+            <li class="nav-item" data-view="patterns">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-text">Behavior Patterns</span>
+            </li>
+            <li class="nav-item" data-view="goals">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-text">Goals & Habits</span>
+            </li>
+            <li class="nav-item" data-view="insights">
+                <span class="nav-icon">💡</span>
+                <span class="nav-text">AI Insights</span>
+            </li>
+            <li class="nav-item" data-view="compare">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Compare Periods</span>
+            </li>
+            <li class="nav-item" data-view="timeline">
+                <span class="nav-icon">📅</span>
+                <span class="nav-text">Timeline</span>
+            </li>
+            <li class="nav-item" data-view="calendar">
+                <span class="nav-icon">📆</span>
+                <span class="nav-text">Mood Calendar</span>
+            </li>
+            <li class="nav-item" data-view="achievements">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Achievements</span>
+            </li>
+            <li class="nav-item" data-view="habits">
+                <span class="nav-icon">✅</span>
+                <span class="nav-text">Habit Tracker</span>
+            </li>
+            <li class="nav-item" data-view="predictions">
+                <span class="nav-icon">🔮</span>
+                <span class="nav-text">Predictions</span>
+            </li>
+            <li class="nav-item" data-view="reports">
+                <span class="nav-icon">📄</span>
+                <span class="nav-text">Weekly Reports</span>
+            </li>
+            <li class="nav-item" data-view="export">
+                <span class="nav-icon">💾</span>
+                <span class="nav-text">Export Data</span>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-stats-mini">
+                <div class="mini-stat">
+                    <span class="mini-stat-icon">🔥</span>
+                    <span class="mini-stat-value" id="sidebarStreak">0</span>
+                </div>
+                <div class="mini-stat">
+                    <span class="mini-stat-icon">⭐</span>
+                    <span class="mini-stat-value" id="sidebarScore">-</span>
+                </div>
+            </div>
+            <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+        </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="main-content">
-      <section class="page active" id="page-dashboard"></section>
-      <section class="page" id="page-expenses"></section>
-      <section class="page" id="page-journal"></section>
-      <section class="page" id="page-habits"></section>
-      <section class="page" id="page-goals"></section>
-      <section class="page" id="page-analytics"></section>
-    </main>
+    <div class="main-content">
+        <!-- Dashboard View -->
+        <section class="view-section active" id="dashboardView">
+            <div class="view-header">
+                <h1>Dashboard Overview</h1>
+                <p class="view-subtitle">Your personality analytics at a glance</p>
+            </div>
 
-    <!-- Bottom Navigation (Mobile) -->
-    <nav class="bottom-nav">
-      <ul class="bottom-nav-items">
-        <li class="bottom-nav-item active" data-page="dashboard">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Home
-        </li>
-        <li class="bottom-nav-item" data-page="expenses">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Expenses
-        </li>
-        <li class="bottom-nav-item" data-page="journal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          Journal
-        </li>
-        <li class="bottom-nav-item" data-page="habits">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          Habits
-        </li>
-        <li class="bottom-nav-item" data-page="goals">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          Goals
-        </li>
-        <li class="bottom-nav-item" data-page="analytics">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Stats
-        </li>
-      </ul>
-    </nav>
-  </div>
+            <div class="quick-stats">
+                <div class="quick-stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-info">
+                        <h3 id="dashTotalEntries">0</h3>
+                        <p>Total Entries</p>
+                    </div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <h3 id="dashAvgScore">-</h3>
+                        <p>Avg Wellbeing</p>
+                    </div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-info">
+                        <h3 id="dashStreak">0</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+                <div class="quick-stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <h3 id="dashGoals">0/0</h3>
+                        <p>Goals Progress</p>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Modal Overlay -->
-  <div class="modal-overlay" id="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <h2 id="modal-title">Modal</h2>
-        <button class="btn btn-ghost btn-icon" onclick="App.closeModal()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body" id="modal-body"></div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="App.closeModal()">Cancel</button>
-        <button class="btn btn-primary" id="modal-save-btn">Save</button>
-      </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Mood Trend (30 Days)</h3>
+                    <canvas id="dashMoodTrend"></canvas>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Personality Radar</h3>
+                    <canvas id="personalityRadar"></canvas>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Recent Entries</h3>
+                    <div id="dashRecentEntries"></div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Top Insights</h3>
+                    <div id="dashInsights"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Entry View -->
+        <section class="view-section" id="entryView">
+            <div class="view-header">
+                <h1>Create New Entry</h1>
+                <p class="view-subtitle">Track your mood, energy, and daily experiences</p>
+            </div>
+
+            <div class="entry-container">
+                <div class="entry-card-large">
+                    <h3>How are you feeling?</h3>
+                    <div class="mood-selector-grid">
+                        <button class="mood-btn-large" data-mood="ecstatic" title="Ecstatic">🤩</button>
+                        <button class="mood-btn-large" data-mood="happy" title="Happy">😊</button>
+                        <button class="mood-btn-large" data-mood="content" title="Content">😌</button>
+                        <button class="mood-btn-large" data-mood="neutral" title="Neutral">😐</button>
+                        <button class="mood-btn-large" data-mood="anxious" title="Anxious">😰</button>
+                        <button class="mood-btn-large" data-mood="sad" title="Sad">😢</button>
+                        <button class="mood-btn-large" data-mood="angry" title="Angry">😠</button>
+                        <button class="mood-btn-large" data-mood="tired" title="Tired">😴</button>
+                    </div>
+                </div>
+
+                <div class="entry-form-advanced" id="entryFormAdvanced">
+                    <div class="form-section">
+                        <label>Energy Level</label>
+                        <div class="slider-container">
+                            <span>Low</span>
+                            <input type="range" id="energyLevel" min="1" max="10" value="5">
+                            <span>High</span>
+                            <span class="slider-value" id="energyValue">5</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Productivity</label>
+                        <div class="slider-container">
+                            <span>Low</span>
+                            <input type="range" id="productivityLevel" min="1" max="10" value="5">
+                            <span>High</span>
+                            <span class="slider-value" id="productivityValue">5</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Social Interaction</label>
+                        <div class="slider-container">
+                            <span>Alone</span>
+                            <input type="range" id="socialLevel" min="1" max="10" value="5">
+                            <span>Very Social</span>
+                            <span class="slider-value" id="socialValue">5</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Overall Wellbeing (1-10)</label>
+                        <div class="slider-container">
+                            <input type="range" id="wellbeingScore" min="1" max="10" value="5">
+                            <span class="slider-value large" id="wellbeingValue">5</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Activities Today</label>
+                        <div class="activity-tags" id="activityTags">
+                            <button class="tag-btn" data-activity="work">💼 Work</button>
+                            <button class="tag-btn" data-activity="exercise">🏃 Exercise</button>
+                            <button class="tag-btn" data-activity="social">👥 Social</button>
+                            <button class="tag-btn" data-activity="creative">🎨 Creative</button>
+                            <button class="tag-btn" data-activity="learning">📚 Learning</button>
+                            <button class="tag-btn" data-activity="relaxation">🧘 Relaxation</button>
+                            <button class="tag-btn" data-activity="entertainment">🎮 Entertainment</button>
+                            <button class="tag-btn" data-activity="family">👨‍👩‍👧 Family</button>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>What's on your mind?</label>
+                        <textarea id="entryNotes" placeholder="Describe your day, thoughts, or anything significant..." rows="5"></textarea>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="entryTags" placeholder="e.g., stressful, productive, fun">
+                    </div>
+
+                    <div class="form-section">
+                        <label>Voice Note (Optional)</label>
+                        <div class="voice-recorder">
+                            <button class="voice-btn" id="recordVoice">
+                                <span class="voice-icon">🎤</span>
+                                <span class="voice-text">Record Voice Note</span>
+                            </button>
+                            <div class="voice-status" id="voiceStatus"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Add Photo (Optional)</label>
+                        <div class="photo-upload">
+                            <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                            <button class="photo-btn" id="addPhoto">
+                                <span>📷 Add Photo</span>
+                            </button>
+                            <div class="photo-preview" id="photoPreview"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <label>Weather & Location (Auto-detect)</label>
+                        <div class="location-info" id="locationInfo">
+                            <button class="location-btn" id="detectLocation">📍 Detect Location</button>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary-large" id="saveAdvancedEntry">
+                        <span>💾 Save Entry</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personality Traits View -->
+        <section class="view-section" id="personalityView">
+            <div class="view-header">
+                <h1>Personality Traits Analysis</h1>
+                <p class="view-subtitle">Track your Big Five personality dimensions over time</p>
+            </div>
+
+            <div class="personality-container">
+                <div class="personality-assessment">
+                    <h3>Quick Assessment</h3>
+                    <p>Rate yourself on these personality dimensions:</p>
+                    
+                    <div class="trait-slider">
+                        <label>Openness to Experience</label>
+                        <small>Curiosity, creativity, willingness to try new things</small>
+                        <input type="range" id="traitOpenness" min="1" max="10" value="5">
+                        <span class="trait-value" id="opennessValue">5</span>
+                    </div>
+
+                    <div class="trait-slider">
+                        <label>Conscientiousness</label>
+                        <small>Organization, responsibility, goal-oriented behavior</small>
+                        <input type="range" id="traitConscientiousness" min="1" max="10" value="5">
+                        <span class="trait-value" id="conscientiousnessValue">5</span>
+                    </div>
+
+                    <div class="trait-slider">
+                        <label>Extraversion</label>
+                        <small>Sociability, assertiveness, energy from social interaction</small>
+                        <input type="range" id="traitExtraversion" min="1" max="10" value="5">
+                        <span class="trait-value" id="extraversionValue">5</span>
+                    </div>
+
+                    <div class="trait-slider">
+                        <label>Agreeableness</label>
+                        <small>Compassion, cooperation, trust in others</small>
+                        <input type="range" id="traitAgreeableness" min="1" max="10" value="5">
+                        <span class="trait-value" id="agreeablenessValue">5</span>
+                    </div>
+
+                    <div class="trait-slider">
+                        <label>Emotional Stability</label>
+                        <small>Calmness, emotional resilience, stress management</small>
+                        <input type="range" id="traitStability" min="1" max="10" value="5">
+                        <span class="trait-value" id="stabilityValue">5</span>
+                    </div>
+
+                    <button class="btn-primary" id="saveTraits">Save Assessment</button>
+                </div>
+
+                <div class="personality-history">
+                    <h3>Trait History</h3>
+                    <canvas id="traitHistoryChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patterns View -->
+        <section class="view-section" id="patternsView">
+            <div class="view-header">
+                <h1>Behavior Patterns</h1>
+                <p class="view-subtitle">Discover patterns in your mood, energy, and activities</p>
+            </div>
+
+            <div class="patterns-grid">
+                <div class="pattern-card">
+                    <h3>Time of Day Analysis</h3>
+                    <canvas id="timeOfDayChart"></canvas>
+                </div>
+                <div class="pattern-card">
+                    <h3>Day of Week Patterns</h3>
+                    <canvas id="dayOfWeekChart"></canvas>
+                </div>
+                <div class="pattern-card">
+                    <h3>Activity Correlation</h3>
+                    <div id="activityCorrelation"></div>
+                </div>
+                <div class="pattern-card">
+                    <h3>Mood Triggers</h3>
+                    <div id="moodTriggers"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goals View -->
+        <section class="view-section" id="goalsView">
+            <div class="view-header">
+                <h1>Goals & Habits</h1>
+                <p class="view-subtitle">Set and track your personal development goals</p>
+            </div>
+
+            <div class="goals-container">
+                <div class="add-goal-section">
+                    <h3>Create New Goal</h3>
+                    <input type="text" id="goalTitle" placeholder="Goal title">
+                    <textarea id="goalDescription" placeholder="Description" rows="3"></textarea>
+                    <select id="goalCategory">
+                        <option value="health">🏃 Health & Fitness</option>
+                        <option value="career">💼 Career</option>
+                        <option value="relationships">❤️ Relationships</option>
+                        <option value="personal">🌱 Personal Growth</option>
+                        <option value="financial">💰 Financial</option>
+                        <option value="creative">🎨 Creative</option>
+                    </select>
+                    <input type="date" id="goalDeadline">
+                    <button class="btn-primary" id="addGoal">Add Goal</button>
+                </div>
+
+                <div class="goals-list" id="goalsList"></div>
+            </div>
+        </section>
+
+        <!-- Insights View -->
+        <section class="view-section" id="insightsView">
+            <div class="view-header">
+                <h1>AI-Powered Insights</h1>
+                <p class="view-subtitle">Personalized analysis based on your data</p>
+            </div>
+
+            <div class="insights-container" id="insightsContainer"></div>
+        </section>
+
+        <!-- Compare View -->
+        <section class="view-section" id="compareView">
+            <div class="view-header">
+                <h1>Compare Time Periods</h1>
+                <p class="view-subtitle">Analyze changes in your wellbeing over time</p>
+            </div>
+
+            <div class="compare-controls">
+                <div class="period-selector">
+                    <label>Period 1:</label>
+                    <select id="period1">
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="quarter">This Quarter</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="period-selector">
+                    <label>Period 2:</label>
+                    <select id="period2">
+                        <option value="lastWeek">Last Week</option>
+                        <option value="lastMonth" selected>Last Month</option>
+                        <option value="lastQuarter">Last Quarter</option>
+                        <option value="lastYear">Last Year</option>
+                    </select>
+                </div>
+                <button class="btn-primary" id="compareBtn">Compare</button>
+            </div>
+
+            <div class="comparison-results" id="comparisonResults"></div>
+        </section>
+
+        <!-- Timeline View -->
+        <section class="view-section" id="timelineView">
+            <div class="view-header">
+                <h1>Entry Timeline</h1>
+                <p class="view-subtitle">Browse all your entries chronologically</p>
+                <div class="timeline-filters">
+                    <select id="timelineFilter">
+                        <option value="all">All Entries</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
+                    </select>
+                    <input type="text" id="timelineSearch" placeholder="Search entries...">
+                </div>
+            </div>
+
+            <div class="timeline-container" id="timelineContainer"></div>
+        </section>
+
+        <!-- Calendar View -->
+        <section class="view-section" id="calendarView">
+            <div class="view-header">
+                <h1>Mood Calendar</h1>
+                <p class="view-subtitle">Visual heatmap of your emotional journey</p>
+            </div>
+
+            <div class="calendar-controls">
+                <button class="calendar-nav" id="prevMonth">← Previous</button>
+                <h3 id="currentMonth">Loading...</h3>
+                <button class="calendar-nav" id="nextMonth">Next →</button>
+            </div>
+
+            <div class="calendar-heatmap" id="calendarHeatmap"></div>
+
+            <div class="calendar-legend">
+                <span>Low</span>
+                <div class="legend-colors">
+                    <div class="legend-box" style="background: #e0e7ff;"></div>
+                    <div class="legend-box" style="background: #c7d2fe;"></div>
+                    <div class="legend-box" style="background: #a5b4fc;"></div>
+                    <div class="legend-box" style="background: #818cf8;"></div>
+                    <div class="legend-box" style="background: #6366f1;"></div>
+                </div>
+                <span>High</span>
+            </div>
+        </section>
+
+        <!-- Achievements View -->
+        <section class="view-section" id="achievementsView">
+            <div class="view-header">
+                <h1>Achievements</h1>
+                <p class="view-subtitle">Unlock badges as you track your journey</p>
+            </div>
+
+            <div class="achievements-grid" id="achievementsGrid"></div>
+        </section>
+
+        <!-- Habits View -->
+        <section class="view-section" id="habitsView">
+            <div class="view-header">
+                <h1>Habit Tracker</h1>
+                <p class="view-subtitle">Build positive habits and track your consistency</p>
+            </div>
+
+            <div class="habits-container">
+                <div class="add-habit-section">
+                    <h3>Create New Habit</h3>
+                    <input type="text" id="habitName" placeholder="Habit name (e.g., Exercise, Meditate)">
+                    <select id="habitFrequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    <input type="color" id="habitColor" value="#6366f1">
+                    <button class="btn-primary" id="addHabit">Add Habit</button>
+                </div>
+
+                <div class="habits-grid" id="habitsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Predictions View -->
+        <section class="view-section" id="predictionsView">
+            <div class="view-header">
+                <h1>Mood Predictions</h1>
+                <p class="view-subtitle">AI-powered forecasts based on your patterns</p>
+            </div>
+
+            <div class="predictions-container">
+                <div class="prediction-card main-prediction">
+                    <h3>Tomorrow's Predicted Mood</h3>
+                    <div class="prediction-emoji" id="tomorrowPrediction">🤔</div>
+                    <div class="prediction-confidence" id="predictionConfidence">Analyzing...</div>
+                    <p class="prediction-reason" id="predictionReason"></p>
+                </div>
+
+                <div class="prediction-factors">
+                    <h3>Influencing Factors</h3>
+                    <div id="predictionFactors"></div>
+                </div>
+
+                <div class="prediction-chart">
+                    <h3>7-Day Forecast</h3>
+                    <canvas id="forecastChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports View -->
+        <section class="view-section" id="reportsView">
+            <div class="view-header">
+                <h1>Weekly Reports</h1>
+                <p class="view-subtitle">Comprehensive analysis of your week</p>
+            </div>
+
+            <div class="reports-container">
+                <div class="report-selector">
+                    <button class="report-btn active" data-period="thisWeek">This Week</button>
+                    <button class="report-btn" data-period="lastWeek">Last Week</button>
+                    <button class="report-btn" data-period="thisMonth">This Month</button>
+                </div>
+
+                <div class="report-content" id="reportContent"></div>
+
+                <div class="report-actions">
+                    <button class="btn-secondary" id="shareReport">📤 Share Report</button>
+                    <button class="btn-secondary" id="downloadReport">📥 Download PDF</button>
+                    <button class="btn-secondary" id="emailReport">📧 Email Report</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Export View -->
+        <section class="view-section" id="exportView">
+            <div class="view-header">
+                <h1>Export & Backup</h1>
+                <p class="view-subtitle">Download your data or import from backup</p>
+            </div>
+
+            <div class="export-container">
+                <div class="export-card">
+                    <h3>📊 Export to CSV</h3>
+                    <p>Download all your entries in spreadsheet format</p>
+                    <button class="btn-secondary" id="exportCSV">Export CSV</button>
+                </div>
+                <div class="export-card">
+                    <h3>📄 Export to JSON</h3>
+                    <p>Download complete data backup</p>
+                    <button class="btn-secondary" id="exportJSON">Export JSON</button>
+                </div>
+                <div class="export-card">
+                    <h3>📈 Generate Report</h3>
+                    <p>Create a comprehensive PDF report</p>
+                    <button class="btn-secondary" id="generateReport">Generate Report</button>
+                </div>
+                <div class="export-card">
+                    <h3>📥 Import Data</h3>
+                    <p>Restore from backup file</p>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                    <button class="btn-secondary" id="importData">Import JSON</button>
+                </div>
+            </div>
+        </section>
     </div>
-  </div>
 
-  <!-- Toast Container -->
-  <div id="toast-container"></div>
-
-  <!-- Scripts (order matters) -->
-  <script src="js/db.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/charts.js"></script>
-  <script src="js/dashboard.js"></script>
-  <script src="js/expenses.js"></script>
-  <script src="js/journal.js"></script>
-  <script src="js/habits.js"></script>
-  <script src="js/goals.js"></script>
-  <script src="js/analytics.js"></script>
-  <script src="js/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
